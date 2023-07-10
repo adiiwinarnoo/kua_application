@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.InputSaksiActivity">
+    tools:context=".ui.PembayaranActivity">
 
     <TextView
         android:id="@+id/tv_tittle"
         android:layout_width="0dp"
         android:layout_height="35dp"
-        android:text="Data Permohonan Pengantin"
+        android:text="Pembayaran"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginTop="20dp"
@@ -21,92 +21,112 @@
         app:layout_constraintStart_toStartOf="parent"
         android:gravity="center"
         android:background="@drawable/bg_editext"/>
+
     <TextView
-        android:id="@+id/tv_saksi"
+        android:id="@+id/tv_nominal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Nama Saksi*:"
+        android:text="Nominal*:"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/tv_tittle"
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
         app:layout_constraintEnd_toEndOf="@id/tv_tittle"/>
-
     <EditText
-        android:id="@+id/edt_saksi"
+        android:id="@+id/edt_mas_kawin"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:background="@drawable/bg_editext"
         android:layout_marginTop="5dp"
-        android:hint="masukan nama saksi"
+        android:hint="masukan nominal pembayaran"
         android:focusable="false"
         android:paddingStart="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_saksi"
-        app:layout_constraintStart_toStartOf="@id/tv_tittle"
-        app:layout_constraintEnd_toEndOf="@id/tv_tittle" />
-
-    <TextView
-        android:id="@+id/tv_ttl_saksi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Tanggal Lahir Saksi*:"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/edt_saksi"
-        app:layout_constraintStart_toStartOf="@id/tv_tittle"
-        app:layout_constraintEnd_toEndOf="@id/tv_tittle"/>
-
-    <EditText
-        android:id="@+id/edt_ttl"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:background="@drawable/bg_editext"
-        android:layout_marginTop="5dp"
-        android:hint="masukan tanggal lahir saksi"
-        android:focusable="false"
-        android:paddingStart="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_ttl_saksi"
+        app:layout_constraintTop_toBottomOf="@id/tv_nominal"
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
         app:layout_constraintEnd_toEndOf="@id/tv_tittle" />
     <TextView
-        android:id="@+id/tv_alamat_saksi"
+        android:id="@+id/tv_tanggal_bayar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Alamat Saksi*:"
+        android:text="Tanggal Bayar*:"
         android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/edt_ttl"
+        app:layout_constraintTop_toBottomOf="@id/edt_mas_kawin"
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
         app:layout_constraintEnd_toEndOf="@id/tv_tittle"/>
-
     <EditText
-        android:id="@+id/edt_alamat_saksi"
+        android:id="@+id/edt_tanggal_bayar"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:background="@drawable/bg_editext"
         android:layout_marginTop="5dp"
-        android:hint="masukan tanggal alamat saksi"
+        android:hint="Tanggal Pembayaran"
         android:focusable="false"
         android:paddingStart="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_alamat_saksi"
+        app:layout_constraintTop_toBottomOf="@id/tv_tanggal_bayar"
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
         app:layout_constraintEnd_toEndOf="@id/tv_tittle" />
+    <TextView
+        android:id="@+id/tv_upload"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Upload Pembayaran*:"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/edt_tanggal_bayar"
+        app:layout_constraintStart_toStartOf="@id/tv_tittle"
+        app:layout_constraintEnd_toEndOf="@id/tv_tittle"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_editext"
+        app:layout_constraintTop_toBottomOf="@id/tv_upload"
+        app:layout_constraintStart_toStartOf="@id/tv_upload"
+        app:layout_constraintEnd_toEndOf="@id/tv_upload">
+        <TextView
+            android:id="@+id/tv_pilih_file"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="Pilih File*:"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:background="@drawable/bg_editext"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tv_after_pembayaran"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tidak ada file yang dipilih"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/tv_pilih_file"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <Button
-        android:id="@+id/btn_submit"
+        android:id="@+id/btn_add"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="50dp"
-        android:text="Submit"
+        android:text="Upload Pembayaran"
         android:textSize="18sp"
         android:textStyle="bold"
         android:backgroundTint="@color/blue_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edt_alamat_saksi"
+        app:layout_constraintTop_toBottomOf="@id/constraint"
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
         app:layout_constraintEnd_toEndOf="@id/tv_tittle"/>
 

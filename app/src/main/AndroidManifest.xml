@@ -14,16 +14,28 @@
         android:theme="@style/Theme.KuaApplication"
         tools:targetApi="31">
         <activity
-            android:name=".InputSaksiActivity"
+            android:name=".JadwalNikahActivity"
             android:exported="false" />
         <activity
-            android:name=".InputWaliActivity"
+            android:name=".JadwalPelatihanActivity"
             android:exported="false" />
         <activity
-            android:name=".InputPengantinPriaActivity"
+            android:name=".ui.PembayaranActivity"
             android:exported="false" />
         <activity
-            android:name=".InputPengantinWanitaActivity"
+            android:name=".ui.UtamaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.InputSaksiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.InputWaliActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.InputPengantinPriaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.InputPengantinWanitaActivity"
             android:exported="false" />
         <activity
             android:name=".ui.HomeActivity"

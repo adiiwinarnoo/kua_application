@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_input_pengantin_pria.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_input_pengantin_wanita.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_input_saksi.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_input_wali.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_jadwal_nikah.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_jadwal_pelatihan.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_pembayaran.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/activity_utama.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/item_jadwal_nikah.xml" value="0.365625" />
+        <entry key="..\:/Users/Adi Winarno/AndroidStudioProjects/kua_application/app/src/main/res/layout/item_jadwal_pelatihan.xml" value="0.3" />
         <entry key="..\:/Users/adi winarno/AndroidStudioProjects/KuaApplication/app/src/main/res/drawable/bg_editext.xml" value="0.132" />
         <entry key="..\:/Users/adi winarno/AndroidStudioProjects/KuaApplication/app/src/main/res/drawable/ic_jadwal_nikah.xml" value="0.132" />
         <entry key="..\:/Users/adi winarno/AndroidStudioProjects/KuaApplication/app/src/main/res/layout/activity_home.xml" value="0.2" />
@@ -17,7 +27,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
