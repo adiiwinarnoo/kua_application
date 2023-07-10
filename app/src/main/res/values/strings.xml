@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Kua Application</string>
+    <string-array name="jenis_kelamin">
+        <item>Pilih</item>
+        <item>Pria</item>
+        <item>Wanita</item>
+    </string-array>
+    <string-array name="lokasi_nikah">
+        <item>Pilih</item>
+        <item>Pria</item>
+        <item>Wanita</item>
+    </string-array>
+</resources>
