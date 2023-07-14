@@ -3,8 +3,15 @@ package com.example.kuaapplication.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import com.example.kuaapplication.api.ApiConfig
 import com.example.kuaapplication.databinding.ActivityLoginBinding
+import com.example.kuaapplication.model.ResponseLogin
+import com.example.kuaapplication.utils.Constant
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class LoginActivity : AppCompatActivity() {
@@ -13,8 +20,9 @@ class LoginActivity : AppCompatActivity() {
     var answerCaptcha = 0
     var captchaOne = 0
     var captchaTwo = 0
-    var userName = ""
+    var email = ""
     var password = ""
+    var apiConfig = ApiConfig()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +48,23 @@ class LoginActivity : AppCompatActivity() {
         else if (binding.edtCaptcha.text.isNullOrEmpty()) Toast.makeText(this, "wajib mengisi captcha", Toast.LENGTH_SHORT).show()
         else if (userAnswer != answerCaptcha) Toast.makeText(this, "captcha tidak valid", Toast.LENGTH_SHORT).show()
         else{
-            userName = binding.edtUsername.text.toString()
+            email = binding.edtUsername.text.toString()
             password = binding.edtPassword.text.toString()
-            startActivity(Intent(this,HomeActivity::class.java))
+            apiConfig.server.login(email, password).enqueue(object : Callback<ResponseLogin>{
+                override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
+                    if (response.isSuccessful){
+                        if (response.body()?.data != null){
+                            Constant.TOKEN_USER = response.body()!!.data?.accessToken!!
+                            startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+                    Log.d("LOGIN-GAGAL", "onFailure: ${t.message}")
+                }
+
+            })
         }
     }
 

@@ -1,9 +1,12 @@
 package com.example.kuaapplication.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.kuaapplication.databinding.ActivityHomeBinding
+import com.example.kuaapplication.utils.Constant
 import java.util.*
 
 class HomeActivity : AppCompatActivity() {
@@ -16,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.menu1.setOnClickListener {
-            Toast.makeText(this, "menu one", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this,InputPengantinPriaActivity::class.java))
         }
 
 

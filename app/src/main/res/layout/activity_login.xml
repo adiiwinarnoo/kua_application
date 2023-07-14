@@ -54,6 +54,7 @@
         android:layout_marginTop="10dp"
         android:hint="masukan password"
         android:paddingStart="10dp"
+        android:inputType="textPassword"
         android:layout_marginEnd="20dp"
         app:layout_constraintTop_toBottomOf="@id/tv_password"
         app:layout_constraintStart_toStartOf="@id/tv_username"

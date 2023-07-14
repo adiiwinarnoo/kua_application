@@ -53,6 +53,7 @@
             android:text="Permohonan"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toTopOf="@id/image_permohonan"
             app:layout_constraintStart_toEndOf="@id/image_permohonan"/>
         <TextView
@@ -103,6 +104,7 @@
             android:text="Pembayaran"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toTopOf="@id/image_pembayaran"
             app:layout_constraintStart_toEndOf="@id/image_pembayaran"/>
         <TextView
@@ -153,6 +155,7 @@
             android:text="Jadwal Pelatihan"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toTopOf="@id/image_jadwal_pelatihan"
             app:layout_constraintStart_toEndOf="@id/image_jadwal_pelatihan"/>
         <TextView
@@ -203,6 +206,7 @@
             android:text="Jadwal Nikah"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toTopOf="@id/image_jadwal_nikah"
             app:layout_constraintStart_toEndOf="@id/image_jadwal_nikah"/>
         <TextView
@@ -253,6 +257,7 @@
             android:text="Data Profil"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toTopOf="@id/image_jadwal_profil"
             app:layout_constraintStart_toEndOf="@id/image_jadwal_profil"/>
         <TextView

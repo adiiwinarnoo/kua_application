@@ -2,12 +2,22 @@
     <string name="app_name">Kua Application</string>
     <string-array name="jenis_kelamin">
         <item>Pilih</item>
-        <item>Pria</item>
+        <item>Laki-laki</item>
         <item>Wanita</item>
     </string-array>
     <string-array name="lokasi_nikah">
         <item>Pilih</item>
-        <item>Pria</item>
-        <item>Wanita</item>
+        <item>KUA</item>
+        <item>Rumah</item>
+    </string-array>
+    <string-array name="status_pria">
+        <item>Pilih</item>
+        <item>Perjaka</item>
+        <item>Duda</item>
+    </string-array>
+    <string-array name="status_wanita">
+        <item>Pilih</item>
+        <item>Janda</item>
+        <item>Perawan</item>
     </string-array>
 </resources>
