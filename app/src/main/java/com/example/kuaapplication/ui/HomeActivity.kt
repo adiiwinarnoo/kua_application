@@ -21,6 +21,18 @@ class HomeActivity : AppCompatActivity() {
         binding.menu1.setOnClickListener {
             startActivity(Intent(this,InputPengantinPriaActivity::class.java))
         }
+        binding.menu2.setOnClickListener {
+            startActivity(Intent(this, PembayaranActivity::class.java))
+        }
+        binding.menu3.setOnClickListener {
+            startActivity(Intent(this,JadwalPelatihanActivity::class.java))
+        }
+        binding.menu4.setOnClickListener {
+            startActivity(Intent(this,JadwalNikahActivity::class.java))
+        }
+        binding.menu5.setOnClickListener {
+            startActivity(Intent(this,ProfilActivity::class.java))
+        }
 
 
     }

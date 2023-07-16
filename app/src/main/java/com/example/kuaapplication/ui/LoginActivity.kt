@@ -55,6 +55,13 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful){
                         if (response.body()?.data != null){
                             Constant.TOKEN_USER = response.body()!!.data?.accessToken!!
+                            Constant.NAMA_LENGKAP = response.body()!!.data?.user?.name!!
+                            Constant.JENIS_KELAMIN = response.body()!!.data?.user?.jenisKelamin!!
+                            Constant.ALAMAT_USER = response.body()!!.data?.user?.alamat!!
+                            Constant.NOMOR_HANDPHONE = response.body()!!.data?.user?.phone!!
+                            Constant.USER_NAME = response.body()!!.data?.user?.username!!
+                            Constant.EMAIL_USER = response.body()!!.data?.user?.email!!
+                            Constant.ID_USER = response.body()!!.data?.user?.id!!
                             startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
                         }
                     }

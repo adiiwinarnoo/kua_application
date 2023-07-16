@@ -34,13 +34,12 @@
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
         app:layout_constraintEnd_toEndOf="@id/tv_tittle"/>
     <EditText
-        android:id="@+id/edt_mas_kawin"
+        android:id="@+id/edt_nominal"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:background="@drawable/bg_editext"
         android:layout_marginTop="5dp"
         android:hint="masukan nominal pembayaran"
-        android:focusable="false"
         android:paddingStart="10dp"
         app:layout_constraintTop_toBottomOf="@id/tv_nominal"
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
@@ -53,7 +52,7 @@
         android:text="Tanggal Bayar*:"
         android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/edt_mas_kawin"
+        app:layout_constraintTop_toBottomOf="@id/edt_nominal"
         app:layout_constraintStart_toStartOf="@id/tv_tittle"
         app:layout_constraintEnd_toEndOf="@id/tv_tittle"/>
     <EditText
@@ -111,8 +110,10 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintStart_toEndOf="@id/tv_pilih_file"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

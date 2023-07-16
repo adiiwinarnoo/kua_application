@@ -2,6 +2,7 @@ package com.example.kuaapplication.api
 
 import com.example.kuaapplication.model.ResponseAddPemohon
 import com.example.kuaapplication.model.ResponseLogin
+import com.example.kuaapplication.model.ResponsePayment
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -27,6 +28,15 @@ interface ApiService {
         @Field("alamat") alamat : String,
         @Field("jenis_kelamin") jenisKelamin : String
     ) : Call<ResponseLogin>
+
+    @Multipart
+    @POST("/api/payment")
+    fun uploadPayment(
+        @Part("user_id") userId : RequestBody?,
+        @Part url_file : MultipartBody.Part,
+        @Part("nominal") nominal : RequestBody?,
+        @Part("tanggal_bayar") tanggalBayar : RequestBody?
+    ) : Call<ResponsePayment>
 
     @Multipart
     @POST("/api/createPemohon")
