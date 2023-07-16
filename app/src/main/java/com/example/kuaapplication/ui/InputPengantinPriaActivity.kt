@@ -41,6 +41,7 @@ class InputPengantinPriaActivity : AppCompatActivity() {
         setContentView(binding.root)
         dbLocalPria = RoomDatabaseItem.getDatabase(this)
         dbDao = dbLocalPria.dao()
+        dbDao.deleteDataPengantinPria()
 
         val date = OnDateSetListener { datePicker, year, month, day ->
                 myCalendar.set(Calendar.YEAR, year)

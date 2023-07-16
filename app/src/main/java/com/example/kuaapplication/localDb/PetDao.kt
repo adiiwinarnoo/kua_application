@@ -37,4 +37,16 @@ interface PetDao {
     @Query("SELECT * FROM Saksi")
     fun getAllDataSaksi() : List<com.example.kuaapplication.localDb.Saksi>
 
+    @Query("DELETE FROM PengantinPria")
+    fun deleteDataPengantinPria()
+
+    @Query("DELETE FROM PengantinWanita")
+    fun deleteDataPengantinWanita()
+
+    @Query("DELETE FROM Wali")
+    fun deleteDataWali()
+
+    @Query("DELETE FROM Saksi")
+    fun deleteDataSaksi()
+
 }

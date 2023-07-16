@@ -31,6 +31,7 @@ class InputPengantinWanitaActivity : AppCompatActivity() {
         setContentView(binding.root)
         dbLocalWanita = RoomDatabaseItem.getDatabase(this)
         dbDao = dbLocalWanita.dao()
+        dbDao.deleteDataPengantinWanita()
 
         binding.btnSubmit.setOnClickListener {
             checktedData()

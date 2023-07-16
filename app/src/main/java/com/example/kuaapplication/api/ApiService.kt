@@ -3,6 +3,7 @@ package com.example.kuaapplication.api
 import com.example.kuaapplication.model.ResponseAddPemohon
 import com.example.kuaapplication.model.ResponseLogin
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -30,25 +31,25 @@ interface ApiService {
     @Multipart
     @POST("/api/createPemohon")
     fun addPermohonan(
-        @Part("tanggal_nikah") tanggalNikah : String,
-        @Part("jam_nikah") jamNikah : String,
-        @Part("lokasi_id") idLokasi : Int,
-        @Part("nama_pria") namaPria : String,
-        @Part("no_ktp_pria") noKtpPria : Int,
-        @Part("tempat_tanggal_lahir") tempatTanggalLahir : String,
-        @Part("alamat") alamat : String,
-        @Part("id_status_pria") idStatusPria : Int,
-        @Part("nama_wanita") namaWanita : String,
-        @Part("no_ktp_wanita") noKtpWanita : Int,
-        @Part("tempat_tanggal_lahir_wanita") tempatTanggalLahirWanita : String,
-        @Part("alamat_wanita") alamatWanita : String,
-        @Part("id_status_wanita") idStatusWanita : Int,
-        @Part("nama_wali") namaWali : String,
-        @Part("status_wali") statusWali : String,
-        @Part("mas_kawin") masKawin : String,
-        @Part("nama_saksi") namaSaksi : String,
-        @Part("tanggal_lahir_saksi") tanggalLahirSaksi : String,
-        @Part("alamat_saksi") alamatSaksi : String,
+        @Part("tanggal_nikah") tanggalNikah : RequestBody?,
+        @Part("jam_nikah") jamNikah : RequestBody?,
+        @Part("lokasi_id") idLokasi : RequestBody?,
+        @Part("nama_pria") namaPria : RequestBody?,
+        @Part("no_ktp_pria") noKtpPria : RequestBody?,
+        @Part("tempat_tanggal_lahir_pria") tempatTanggalLahir : RequestBody?,
+        @Part("alamat") alamat : RequestBody?,
+        @Part("id_status_pria") idStatusPria : RequestBody?,
+        @Part("nama_wanita") namaWanita : RequestBody?,
+        @Part("nomor_ktp_wanita") noKtpWanita : RequestBody?,
+        @Part("tempat_tanggal_lahir_wanita") tempatTanggalLahirWanita : RequestBody?,
+        @Part("alamat_wanita") alamatWanita : RequestBody?,
+        @Part("id_status_wanita") idStatusWanita : RequestBody?,
+        @Part("nama_wali") namaWali : RequestBody?,
+        @Part("status_wali") statusWali : RequestBody?,
+        @Part("mas_kawin") masKawin : RequestBody?,
+        @Part("nama_saksi") namaSaksi : RequestBody?,
+        @Part("tanggal_lahir_saksi") tanggalLahirSaksi : RequestBody?,
+        @Part("alamat") alamatSaksi : RequestBody?,
         @Part berkas_persyaratan : MultipartBody.Part,
         @Part foto_wanita : MultipartBody.Part,
         @Part foto_pria : MultipartBody.Part

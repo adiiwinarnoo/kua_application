@@ -1,10 +1,10 @@
 package com.example.kuaapplication.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.kuaapplication.api.ApiConfig
 import com.example.kuaapplication.databinding.ActivityLoginBinding
 import com.example.kuaapplication.model.ResponseLogin

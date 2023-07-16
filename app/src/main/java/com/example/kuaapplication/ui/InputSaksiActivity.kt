@@ -1,6 +1,7 @@
 package com.example.kuaapplication.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -16,11 +17,13 @@ import com.example.kuaapplication.localDb.Wali
 import com.example.kuaapplication.model.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.io.FileOutputStream
 
 
 class InputSaksiActivity : AppCompatActivity() {
@@ -54,6 +57,9 @@ class InputSaksiActivity : AppCompatActivity() {
     lateinit var dataWanita : List<PengantinWanita>
     lateinit var dataWali : List<Wali>
     lateinit var dataSaksi : List<com.example.kuaapplication.localDb.Saksi>
+    lateinit var fileUri : File
+    lateinit var fileP : File
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +67,7 @@ class InputSaksiActivity : AppCompatActivity() {
         setContentView(binding.root)
         dbLocalSaksi = RoomDatabaseItem.getDatabase(this)
         dbDao = dbLocalSaksi.dao()
+        dbDao.deleteDataSaksi()
 
         binding.btnSubmit.setOnClickListener {
             checkedData()
@@ -75,11 +82,6 @@ class InputSaksiActivity : AppCompatActivity() {
             dataWali = dbDao.getAllDataWali()
             dataWanita = dbDao.getAllDataWanita()
             dataSaksi = dbDao.getAllDataSaksi()
-
-            Log.d("DATA-DATA", "checkedData: data pria $dataPria")
-            Log.d("DATA-DATA", "checkedData: data pria $dataWali")
-            Log.d("DATA-DATA", "checkedData: data pria $dataWanita")
-            Log.d("DATA-DATA", "checkedData: data pria $dataSaksi")
 
             for(i in dataPria){
                 tanggalNikah = i.tanggalNikah
@@ -114,28 +116,60 @@ class InputSaksiActivity : AppCompatActivity() {
             modelSaksi = Saksi(namaSaksi,tanggalLahir,alamat)
             dbDao.insertSaksi(com.example.kuaapplication.localDb.Saksi(0,namaSaksi,tanggalLahir,alamat))
             Log.d("MODEL-", "checkedData-saksi: $modelSaksi")
-            val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-            val path2 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
-            Log.d("FOTO---", "checkedData: foto pria $fotoPria, foto wanita $fotoWanita, pdf $berkasPdf")
+
             val fileFotoPria = File(fotoPria)
             val fileFotoWanita= File(fotoWanita)
-            Log.d("BERKAS-PDF", "checkedData: $berkasPdf")
-            val fileBerkas = File(berkasPdf)
-            var imageRequest = fileFotoPria.asRequestBody("image/jpg".toMediaTypeOrNull())
-            var imageRequestWanita = fileFotoPria.asRequestBody("image/jpg".toMediaTypeOrNull())
-            var pdfRequest = fileBerkas.asRequestBody("application/pdf".toMediaTypeOrNull())
-            var fotoPriaImage = MultipartBody.Part.createFormData("file", fileFotoPria.name, imageRequest)
-            var fotoWanitaImage = MultipartBody.Part.createFormData("file", fileFotoWanita.name, imageRequestWanita)
-            var pdfFile = MultipartBody.Part.createFormData("file", fileBerkas.name, pdfRequest)
+            val berkasUri = Uri.parse(berkasPdf)
+            uriToFile(berkasUri)
+//
+//            var imageRequest = fileFotoPria.asRequestBody("image/jpg".toMediaTypeOrNull())
+//            var imageRequestWanita = fileFotoPria.asRequestBody("image/jpg".toMediaTypeOrNull())
+//            var pdfRequest = fileUri.asRequestBody("application/pdf".toMediaTypeOrNull())
 
-            Log.d("DATA-GAMBAR", "checkedData: pdf $pdfFile, foto wanita $fotoWanitaImage, foto pria $fotoPriaImage")
+//            var fotoPriaImage = MultipartBody.Part.createFormData("file", fileFotoPria.name, imageRequest)
+//            var fotoWanitaImage = MultipartBody.Part.createFormData("file", fileFotoWanita.name, imageRequestWanita)
+//            var pdfFile = MultipartBody.Part.createFormData("file", fileUri.name, pdfRequest)
+
+            // Create request body for each part
+            val fotoPriaImage = fileFotoPria.asRequestBody("image/*".toMediaTypeOrNull())
+            val fotoWanitaImage = fileFotoWanita.asRequestBody("image/*".toMediaTypeOrNull())
+            val pdfFile = fileP.asRequestBody("application/pdf".toMediaTypeOrNull())
+
+            // Create MultipartBody.Part for each part
+            val fotoPriaPart = MultipartBody.Part.createFormData("foto_pria", fileFotoPria.name, fotoPriaImage)
+            val fotoWanitaPart = MultipartBody.Part.createFormData("foto_wanita", fileFotoWanita.name, fotoWanitaImage)
+            val pdfPart = MultipartBody.Part.createFormData("berkas_persyaratan", fileP.name, pdfFile)
+
+
+            val tglNikah : RequestBody = RequestBody.create(MultipartBody.FORM, tanggalNikah)
+            val jmNikah : RequestBody = RequestBody.create(MultipartBody.FORM, jamNikah)
+            val lokNikah : RequestBody = RequestBody.create(MultipartBody.FORM, lokasiNikah.toString())
+            val nmPria : RequestBody = RequestBody.create(MultipartBody.FORM, namaPria)
+            val noKtpP : RequestBody = RequestBody.create(MultipartBody.FORM, nomorKtpPria.toString())
+            val ttlPria : RequestBody = RequestBody.create(MultipartBody.FORM, tempatTanggalLahirPria)
+            val alPria : RequestBody = RequestBody.create(MultipartBody.FORM, alamatPria)
+            val stPria : RequestBody = RequestBody.create(MultipartBody.FORM, statusPria.toString())
+            val nmWanita : RequestBody = RequestBody.create(MultipartBody.FORM, namaWanita)
+            val noKtpW : RequestBody = RequestBody.create(MultipartBody.FORM, nomorKtpWanita.toString())
+            val ttlWanita : RequestBody = RequestBody.create(MultipartBody.FORM, tempatTanggalWanita)
+            val alWanita : RequestBody = RequestBody.create(MultipartBody.FORM, alamatWanita)
+            val stWanita : RequestBody = RequestBody.create(MultipartBody.FORM, statusWanita.toString())
+            val nmWali : RequestBody = RequestBody.create(MultipartBody.FORM, namaWali)
+            val hubWali : RequestBody = RequestBody.create(MultipartBody.FORM, hubunganWali)
+            val masKa : RequestBody = RequestBody.create(MultipartBody.FORM, masKawin)
+            val nmSaksi : RequestBody = RequestBody.create(MultipartBody.FORM, binding.edtSaksi.text.toString())
+            val ttSaksi : RequestBody = RequestBody.create(MultipartBody.FORM, binding.edtTtl.text.toString())
+            val alSaksi : RequestBody = RequestBody.create(MultipartBody.FORM, binding.edtAlamatSaksi.text.toString())
+
             apiConfig.server.addPermohonan(
-                tanggalNikah,jamNikah,lokasiNikah,namaPria,nomorKtpPria,tempatTanggalLahirPria,alamatPria,
-                statusPria,namaWanita,nomorKtpWanita,tempatTanggalWanita,alamatWanita,statusWanita,namaWali,
-                hubunganWali,masKawin,namaSaksi,tanggalLahir,alamat,pdfFile,fotoWanitaImage,fotoPriaImage)
-                .enqueue(object : Callback<ResponseAddPemohon>{
+                tglNikah,jmNikah,lokNikah,nmPria,noKtpP,ttlPria,alPria,
+                stPria,nmWanita,noKtpW,ttlWanita,alWanita,stWanita,nmWali,
+                hubWali,masKa,nmSaksi,ttSaksi,alSaksi,pdfPart,fotoWanitaPart,fotoPriaPart)
+                .enqueue(object : Callback<ResponseAddPemohon> {
                     override fun onResponse(call: Call<ResponseAddPemohon>, response: Response<ResponseAddPemohon>) {
-                        Log.d("ADD-PERMOHON", "onResponse: ${response.code()}, ${response.message()}")
+                        Log.d("ADD-PERMOHON", "onResponse: ${response.code()} ${response.message()}")
+                        Log.d("ADD-PERMOHON", "onResponse-payload: " +
+                                "tanggal nikah${tanggalNikah}, jam nikah ${jamNikah}, namaPria${namaPria}, nama wanita $namaWanita, no ktp pria $nomorKtpPria")
                         if (response.isSuccessful){
                             if (response.body()?.status == true){
                                 Toast.makeText(this@InputSaksiActivity, "berhasil menambahkan data permohonan", Toast.LENGTH_SHORT).show()
@@ -151,4 +185,20 @@ class InputSaksiActivity : AppCompatActivity() {
                 })
         }
     }
+
+    private fun uriToFile(uri: Uri): File? {
+        val inputStream = contentResolver.openInputStream(uri) ?: return null
+        fileP = File(cacheDir, "temp.pdf")
+        FileOutputStream(fileP).use { outputStream ->
+            val buffer = ByteArray(4 * 1024) // Buffer size
+            var bytesRead: Int
+            while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                outputStream.write(buffer, 0, bytesRead)
+            }
+            outputStream.flush()
+        }
+        return fileP
+    }
+
+
 }
