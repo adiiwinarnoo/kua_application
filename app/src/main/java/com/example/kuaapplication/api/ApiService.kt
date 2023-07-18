@@ -1,14 +1,19 @@
 package com.example.kuaapplication.api
 
-import com.example.kuaapplication.model.ResponseAddPemohon
-import com.example.kuaapplication.model.ResponseLogin
-import com.example.kuaapplication.model.ResponsePayment
+import com.example.kuaapplication.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
+
+
+    @GET("/api/get-pelatihan")
+    fun getJadwalPelatihan() : Call<ResponseGetJadwalPelatihan>
+
+    @GET("/api/jawdwal-nikah")
+    fun getJadwalNikah() : Call<ResponseGetJadwalNikah>
 
     @FormUrlEncoded
     @POST("/api/login")

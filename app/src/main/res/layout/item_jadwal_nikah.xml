@@ -110,7 +110,7 @@
         android:id="@+id/tv_nama_wanita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nama Pria"
+        android:text="Nama Wanita"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"

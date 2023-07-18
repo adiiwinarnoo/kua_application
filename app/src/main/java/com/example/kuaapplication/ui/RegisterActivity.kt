@@ -41,7 +41,8 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(Intent(this,LoginActivity::class.java))
         }
         binding.btnSubmit.setOnClickListener {
-          checkedData()
+            binding.progressbar.visibility = View.VISIBLE
+            checkedData()
         }
 
         binding.spinnerJenisKelamin.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -55,6 +56,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkedData() {
+        binding.progressbar.visibility = View.GONE
         val userAnswer = binding.edtCaptcha.text.toString().toIntOrNull()
         if (binding.edtUsername.text.isNullOrEmpty()) Toast.makeText(this, "username tidak boleh kosong", Toast.LENGTH_SHORT).show()
         else if (binding.edtPassword.text.isNullOrEmpty()) Toast.makeText(this, "password tidak boleh kosong", Toast.LENGTH_SHORT).show()

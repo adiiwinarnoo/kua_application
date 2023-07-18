@@ -34,6 +34,8 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this,ProfilActivity::class.java))
         }
 
+        binding.tvTittle.setText("Selamat Datang, ${Constant.USER_NAME}")
+
 
     }
 }

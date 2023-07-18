@@ -2,7 +2,7 @@ package com.example.kuaapplication.utils
 
 class Constant {
     companion object {
-        val BASE_URL = "http://192.168.54.106:8000"
+        val BASE_URL = "http://192.168.0.162:8000"
         var TOKEN_USER = "tokenUser"
 
         //profile

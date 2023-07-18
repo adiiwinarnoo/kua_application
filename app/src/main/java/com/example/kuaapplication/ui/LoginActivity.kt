@@ -3,6 +3,7 @@ package com.example.kuaapplication.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kuaapplication.api.ApiConfig
@@ -42,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkedData() {
+        binding.progressbar.visibility = View.VISIBLE
         val userAnswer = binding.edtCaptcha.text.toString().toIntOrNull()
         if (binding.edtUsername.text.isNullOrEmpty()) Toast.makeText(this, "username tidak boleh kosong", Toast.LENGTH_SHORT).show()
         else if (binding.edtPassword.text.isNullOrEmpty()) Toast.makeText(this, "password tidak boleh kosong", Toast.LENGTH_SHORT).show()
@@ -52,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
             password = binding.edtPassword.text.toString()
             apiConfig.server.login(email, password).enqueue(object : Callback<ResponseLogin>{
                 override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
+                    binding.progressbar.visibility = View.GONE
                     if (response.isSuccessful){
                         if (response.body()?.data != null){
                             Constant.TOKEN_USER = response.body()!!.data?.accessToken!!

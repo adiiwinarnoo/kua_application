@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.kuaapplication.api.ApiConfig
 import com.example.kuaapplication.databinding.ActivityPembayaranBinding
@@ -62,6 +63,7 @@ class PembayaranActivity : AppCompatActivity() {
         }
 
         binding.btnAdd.setOnClickListener {
+            binding.progressbar.visibility = View.VISIBLE
             checkedData()
         }
 
@@ -79,6 +81,7 @@ class PembayaranActivity : AppCompatActivity() {
     private fun checkedData(){
         if (binding.edtTanggalBayar.text.isNullOrEmpty() || binding.edtNominal.text.isNullOrEmpty()
             || uploadPembayaranBukti.equals("") || uploadPembayaranBukti.isNullOrEmpty()){
+            binding.progressbar.visibility = View.GONE
             Toast.makeText(this, "data tidak boleh kosong", Toast.LENGTH_SHORT).show()
         }else{
             val uploadFile = File(uploadPembayaranBukti)
@@ -94,6 +97,7 @@ class PembayaranActivity : AppCompatActivity() {
                     call: Call<ResponsePayment>, response: Response<ResponsePayment>) {
                     Log.d("UPLOAD-PAYMENT", "onResponse: ${response.code()}, ${response.message()}")
                     if (response.isSuccessful){
+                        binding.progressbar.visibility = View.GONE
                         if (response.body()?.data != null){
                             Toast.makeText(this@PembayaranActivity, "upload pembayaran berhasil", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@PembayaranActivity,HomeActivity::class.java))

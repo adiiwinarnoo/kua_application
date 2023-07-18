@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kuaapplication.api.ApiConfig
@@ -75,8 +76,10 @@ class InputSaksiActivity : AppCompatActivity() {
     }
 
     private fun checkedData(){
+        binding.progressbar.visibility = View.VISIBLE
         if (binding.edtSaksi.text.isNullOrEmpty() || binding.edtTtl.text.isNullOrEmpty() || binding.edtAlamatSaksi.text.isNullOrEmpty()){
             Toast.makeText(this, "data tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            binding.progressbar.visibility = View.GONE
         }else{
             dataPria = dbDao.getAllDataPria()
             dataWali = dbDao.getAllDataWali()
@@ -171,6 +174,7 @@ class InputSaksiActivity : AppCompatActivity() {
                         Log.d("ADD-PERMOHON", "onResponse-payload: " +
                                 "tanggal nikah${tanggalNikah}, jam nikah ${jamNikah}, namaPria${namaPria}, nama wanita $namaWanita, no ktp pria $nomorKtpPria")
                         if (response.isSuccessful){
+                            binding.progressbar.visibility = View.GONE
                             if (response.body()?.status == true){
                                 Toast.makeText(this@InputSaksiActivity, "berhasil menambahkan data permohonan", Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this@InputSaksiActivity,HomeActivity::class.java))
