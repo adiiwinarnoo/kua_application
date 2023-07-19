@@ -3,7 +3,7 @@ package com.example.kuaapplication.utils
 class Constant {
     companion object {
         //BASE URL INI DISESUAIKAN DENGAN IP ADDRES KONEKSI INTERNET YANG TERHUBUNG
-        val BASE_URL = "http://192.168.53.106:8000"
+        val BASE_URL = "http://192.168.82.106:8000"
 
         //
         var TOKEN_USER = "tokenUser"
